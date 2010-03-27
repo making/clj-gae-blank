@@ -7,10 +7,18 @@
             LocalDatastoreServiceTestConfig 
             LocalServiceTestHelper]))
 
-(deftest foo []
-  (let [config (LocalDatastoreServiceTestConfig.)
-        helper (LocalServiceTestHelper. (into-array [config]))]
-    (.setUp helper)
+(defmacro defdstest [test-name & body]
+  `(deftest ~test-name
+     (let [config# (LocalDatastoreServiceTestConfig.)
+           helper# (LocalServiceTestHelper. (into-array [config#]))]
+       (.setUp helper#)
+       (try 
+        ~@body
+        (finally 
+         (.tearDown helper#))))))
+
+
+(defdstest foo
     (let [entity (Entity. "test")
           _ (doto entity 
               (.setProperty "prop1" 100)
@@ -18,7 +26,6 @@
           service (DatastoreServiceFactory/getDatastoreService)
           key (.put service entity)]
       (is (not (nil? key)))
-      (is (= entity (.get service key))))
-    (.tearDown helper)))
+      (is (= entity (.get service key)))))
 
 (run-tests)
