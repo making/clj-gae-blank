@@ -30,4 +30,4 @@
       (is (not (nil? key)))
       (is (= entity (.get service key)))))
 
-(run-tests)
+;;(run-tests)
