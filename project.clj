@@ -1,6 +1,6 @@
 (defproject clj-gae-blank "0.1.0-SNAPSHOT" 
   :description "a blank project for clojure on GAE" 
-  :repositories {;"gaejtools" "http://gaejtools.sourceforge.jp/maven/repository",
+  :repositories {"gaejtools" "http://gaejtools.sourceforge.jp/maven/repository",
                  "maven.seasar.org" "http://maven.seasar.org/maven2"}
   :dependencies [[org.clojure/clojure "1.1.0"]
                  [org.clojure/clojure-contrib "1.1.0"]
