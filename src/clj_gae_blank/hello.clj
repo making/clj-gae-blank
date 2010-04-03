@@ -1,5 +1,5 @@
 (ns clj-gae-blank.hello
-  (:use [hiccup.core :only [html]]
+  (:use [hiccup.core :only [html h]]
         [clj-gae-blank.guestbook]
         [am.ik.clj-gae-ds.core]))
 
@@ -13,7 +13,7 @@
 
 (defn show-greets []
   (for [x (take 20 (query-seq (-> (q "Greeting") (srt "date" :desc))))]
-    [:p (get-prop x "name") " " (get-prop x "content") " " (get-prop x "date")]))
+    [:p (h (get-prop x "name")) " " (h (get-prop x "content")) " " (h (get-prop x "date"))]))
 
 (defn hello []
   (html [:html
