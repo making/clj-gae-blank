@@ -12,7 +12,7 @@
    [:input {:name :submit :type :submit}]])
 
 (defn show-greets []
-  (for [x (take 20 (query-seq (-> (q "Greeting") (add-sort "date" :desc))))]
+  (for [x (take 20 (query-seq (-> (q "Greeting") (srt "date" :desc))))]
     [:p (get-prop x "name") " " (get-prop x "content") " " (get-prop x "date")]))
 
 (defn hello []
